@@ -61,29 +61,29 @@
                                        @"Wisconsin" : @"Madison",
                                        @"Wyoming" : @"Cheyenne"
                                        };
-    NSArray *keys = [statesDictionary allKeys];
-    NSString *returnState = @"";
+    NSArray *statesArray = [statesDictionary allKeys];
+    NSString *returnedState = @"";
     
-    for (NSString *key in keys) {
+    for (NSString *state in statesArray) {
         NSMutableArray *characterArray = [[NSMutableArray alloc]init];
-        NSString *iteratorKey = [[key lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""];
-        for (NSUInteger i = 0; i < [iteratorKey length]; i++) {
+        NSString *stateIterator = [[state lowercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""];
+        for (NSUInteger i = 0; i < [stateIterator length]; i++) {
             [characterArray addObject:[NSString stringWithFormat:@"%C",
-                                       [iteratorKey characterAtIndex:i]]];
+                                       [stateIterator characterAtIndex:i]]];
         }
         NSUInteger index = 0;
         for (NSString *character in characterArray) {
-            NSString *formattedState = [[statesDictionary[key] lowercaseString]stringByReplacingOccurrencesOfString:@" " withString:@""];
+            NSString *formattedState = [[statesDictionary[state] lowercaseString]stringByReplacingOccurrencesOfString:@" " withString:@""];
             if ([formattedState containsString:character]) {
                 index += 1;
             }
         }
         if (index == 0) {
-            returnState = key;
+            returnedState = state;
         }
         
     }
-    return returnState;
+    return returnedState;
 }
 
 
